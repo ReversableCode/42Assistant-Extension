@@ -2,50 +2,211 @@
 <html>
 
 <head>
-</head>
-
-<body id="bg-frame">
-  <div>
-    <div id="n1_5"></div>
-    <div id="footer">
-      <div id="n1_4"></div>
-    </div>
-  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/highcharts.js"></script>
+  <script src="js/highcharts-more.js"></script>
+  <script src="js/solid-gauge.js"></script>
   <style>
     #bg-frame {
-      background-image: url("https://cdn.intra.42.fr/coalition/cover/77/low-poly-texture-18_copy.png");
+      background-image: url("images/bg.jpg");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
-      width: 300px;
-      height: 400px;
+      width: 350px;
+      height: 475px;
     }
 
     #footer {
       position: absolute;
-      width: 300px;
-      bottom: 15px;
+      width: 350px;
+      bottom: 7px;
     }
 
-    #n1_4 {
-      background: rgba(58, 58, 58, 0.69);
-      border-radius: 11px;
-      width: 260px;
+    #highchart_div {
+      background: rgba(32, 32, 38, 0.75);
+      display: inline-flex;
+      position: relative;
+      justify-content: space-around;
+      color: #00babc;
+      background: rgba(32, 32, 38, 0.75);
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 3px;
+      left: -3px;
+      width: calc(100% - 10px);
+      height: 140px;
+    }
+
+    #profile {
       margin: 0 auto;
-      height: 128px;
+      height: 50px;
     }
 
-    #n1_5 {
+    .highcharts-tracker {
+      opacity: 1 !important;
+    }
+
+    #profile_img {
       background-image: url("https://cdn.intra.42.fr/users/medium_ael-bahr.jpg");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
       border-radius: 83px;
       margin: 0 auto;
-      width: 124px;
-      height: 124px;
+      width: 80px;
+      height: 80px;
+    }
+
+    .margin-top-10 {
+      margin-top: 10px !important;
+    }
+
+    .user-infos-sub {
+      display: inline-flex;
+      justify-content: space-around;
+      color: #00babc;
+      background: rgba(32, 32, 38, 0.75);
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 3px;
+      width: calc(100% - 10px);
+    }
+
+    .user-infos-sub {
+      left: -3px;
+      position: relative;
+    }
+
+    .user-inline-stat {
+      color: #00babc;
+      display: flex;
+      flex-direction: column;
+      white-space: nowrap;
+      justify-content: space-around;
+      font-size: 0.8em;
+    }
+
+    .user-inline-stat+.user-inline-stat {
+      margin-left: 10px;
+    }
+
+    .user-wallet-value,
+    .user-grade-value,
+    .user-cursus-value,
+    .user-correction-point-value,
+    .user-eta-value {
+      font-weight: 400;
+      font-size: 0.9em;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .cursus-user-select {
+      background-color: transparent;
+      font-weight: 400;
+      font-size: 0.9em;
+      color: #fff;
+      border: none;
+      padding: 0px;
+      margin: 0 0;
+      cursor: pointer;
+      text-align: right;
+    }
+
+    .user-data {
+      display: flex;
+      margin-top: 10px;
+      font-size: 0.8em;
+      flex-direction: column;
+    }
+
+    .user-header-box {
+      background-color: rgba(32, 32, 38, 0.85);
+      padding: 10px;
+      border-radius: 4px;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #blackhole-date {
+      text-align: center;
+    }
+
+    #bh {
+      text-align: center;
+      font-size: xx-large;
+    }
+
+    .location {
+      font-size: 2.5em;
+      min-height: 100px;
+    }
+
+    .user-poste-infos,
+    .user-poste-status {
+      color: #fff;
+    }
+
+    .coalition-span1 {
+      color: #fff;
     }
   </style>
+</head>
+
+<body id="bg-frame">
+  <div>
+    <div id="profile_img"></div>
+    <div id="profile">
+        <div class="user-infos-sub margin-top-10 status">
+          <div class="user-collation user-inline-stat">
+            <span class="coalition-span">Coalition</span>
+            <span class="coalition-span1"></span>
+          </div>
+          <div class="user-full-name user-inline-stat">
+            <span class="coalition-span">Full Name</span>
+            <span class="coalition-span1"></span>
+          </div>
+          <div class="user-login user-inline-stat">
+            <span class="coalition-span">Login</span>
+            <span class="coalition-span1"></span>
+          </div>
+        </div>
+      </div>
+    <div id="profile">
+      <div class="user-infos-sub margin-top-10">
+        <div class="user-wallet user-inline-stat">
+          <span class="coalition-span">Wallet</span>
+          <span class="user-wallet-value"></span>
+        </div>
+        <div class="user-correction-point user-inline-stat">
+          <span class="coalition-span">Evaluation points</span>
+          <span class="user-correction-point-value"></span>
+        </div>
+        <div class="user-grade user-inline-stat">
+          <span class="coalition-span">Cursus</span>
+          <span class="user-cursus-value"></span>
+        </div>
+        <div class="user-grade user-inline-stat" data-cursus="42cursus">
+          <span class="coalition-span">Grade</span>
+          <span class="user-grade-value"></span>
+        </div>
+      </div>
+    </div>
+    <div class="user-data">
+      <div class="user-header-box location">
+        <!-- Location -->
+      </div>
+    </div>
+    <div id="footer">
+      <div id="highchart_div">
+        <div id="container-speed"></div>
+      </div>
+    </div>
+  </div>
+  <script src="parse-logtime.js"></script>
 </body>
 
 </html>
