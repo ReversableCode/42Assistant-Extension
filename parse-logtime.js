@@ -38,6 +38,9 @@ getHTML('https://profile.intra.42.fr/', function (err, data) {
     if (err !== null) {
         alert('Something went wrong: ' + err);
     } else {
+        if (data.getElementsByTagName("title")[0].innerText == "Intra Signin  New") {
+            document.getElementById("bg-frame").innerHTML = "<div class=\"user-data\"><div class=\"user-header-box location\"><div class=\"user-poste-infos\" style=\"text-align: center; vertical-align: middle; \">Please Login first to http://intra.42.fr</div></div></div>";
+        }
         user = data.getElementsByClassName("login")[0].innerText;
         getJSON('https://profile.intra.42.fr/users/' + user + '/locations_stats', function (err, data) {
             if (err !== null) {
