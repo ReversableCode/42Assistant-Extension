@@ -71,7 +71,7 @@ getHTML('https://profile.intra.42.fr/', function (err, data) {
                 console.log(Math.ceil(hour) + 'h' + Math.ceil(minute));
             }
         });
-        document.getElementById("profile_img").style = "background-image: url('https://cdn.intra.42.fr/users/medium_" + user + ".jpg');";
+        document.getElementById("profile_img").style.backgroundImage = data.getElementsByClassName("user-profile-picture visible-sidebars")[0].style.backgroundImage;
         var udiv = data.getElementsByClassName("user-cursus")[0].innerHTML;
         document.getElementsByClassName("user-cursus-value")[0].innerHTML = udiv;
         udiv = data.getElementsByClassName("user-grade-value")[0].innerHTML;
