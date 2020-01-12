@@ -15,17 +15,84 @@
       width: 350px;
       height: 475px;
     }
-    
+
     span,
+    a,
     .icon-circle .text-success,
     .user-poste-infos {
-        font-family: 'futura', 'Noto Sans', 'Arial', 'Helvetica', 'Sans serif';
+      font-family: 'futura', 'Noto Sans', 'Arial', 'Helvetica', 'Sans serif';
     }
 
     #footer {
       position: absolute;
       width: 350px;
-      bottom: 7px;
+      height: 170px;
+      bottom: 50px;
+    }
+
+    .progress-bar {
+      float: left;
+      width: 0%;
+      height: 100%;
+      font-size: 14px;
+      border-radius: 3px 0 0 3px;
+      line-height: 22px;
+      color: #fff;
+      text-align: center;
+      background-color: #00babc;
+      -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      -webkit-transition: width 0.6s ease;
+      -o-transition: width 0.6s ease;
+      transition: width 0.6s ease;
+    }
+
+    .progress {
+      position: relative;
+      height: 10px;
+      background-color: #e3e3e3;
+      border-radius: 5px
+    }
+
+    .progress,
+    .progress .progress-bar {
+      -webkit-box-shadow: none;
+      box-shadow: none
+    }
+
+    .progress-bar {
+      background: -webkit-linear-gradient(right, #2dd57a, #00babc);
+      background: -moz-linear-gradient(right, #2dd57a, #00babc);
+      background: -ms-linear-gradient(right, #2dd57a, #00babc);
+      background: -o-linear-gradient(right, #2dd57a, #00babc);
+      background: linear-gradient(to right, #2dd57a, #00babc)
+    }
+
+    .progress-bar+.on-progress {
+      position: absolute;
+      top: 25%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 1em;
+      line-height: 10px;
+      color: #3a2929
+    }
+
+    .progress.double {
+      margin-bottom: 0;
+      height: 40px;
+      font-size: 1.4em;
+      line-height: 40px
+    }
+
+    #level-bar {
+      position: absolute;
+      width: 350px;
+      height: 20px;
+      bottom: 10px;
+      border-radius: 3px;
+      background: rgba(32, 32, 38, 0.75);
     }
 
     #highchart_div {
@@ -37,15 +104,39 @@
       background: rgba(32, 32, 38, 0.75);
       text-align: center;
       padding: 5px 8px;
-      border-radius: 3px;
+      border-radius: 0 0 3px 3px;
       left: -3px;
       width: calc(100% - 10px);
       height: 140px;
     }
 
+    #highchart_div2 {
+      background: rgba(32, 32, 38, 0.75);
+      display: inline-flex;
+      position: relative;
+      justify-content: space-around;
+      color: #00babc;
+      background: rgba(32, 32, 38, 0.75);
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 0 0 3px 3px;
+      left: -3px;
+      font-size: 0.8em;
+      width: calc(100% - 10px);
+      height: 140px;
+      bottom: 150px;
+      visibility: hidden;
+    }
+
     #profile {
       margin: 0 auto;
       height: 50px;
+    }
+
+    #tab-logtime {
+      margin: 0 auto;
+      left: -3px;
+      width: calc(100% - 10px);
     }
 
     .highcharts-tracker {
@@ -75,6 +166,19 @@
       text-align: center;
       padding: 5px 8px;
       border-radius: 3px;
+      width: calc(100% - 10px);
+    }
+
+    .logtime-infos-sub {
+      display: inline-flex;
+      justify-content: space-around;
+      color: #00babc;
+      background: rgba(32, 32, 38, 0.75);
+      text-align: center;
+      position: relative;
+      left: -3px;
+      padding: 5px 8px;
+      border-radius: 3px 3px 0 0;
       width: calc(100% - 10px);
     }
 
@@ -121,8 +225,27 @@
 
     .user-data {
       display: flex;
-      margin-top: 10px;
+      margin-top: 3px;
       font-size: 0.8em;
+      flex-direction: column;
+    }
+
+    .active-tab {
+      color: #fff !important;
+      pointer-events: none;
+    }
+
+    .tab {
+      color: rgba(255, 255, 255, 0.418) !important;
+    }
+
+    .container-speed-month {
+      padding: 10px;
+      border-radius: 4px;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      display: flex;
       flex-direction: column;
     }
 
@@ -148,7 +271,7 @@
 
     .location {
       font-size: 2.5em;
-      min-height: 100px;
+      min-height: 60px;
     }
 
     .user-poste-infos,
@@ -166,21 +289,21 @@
   <div>
     <div id="profile_img"></div>
     <div id="profile">
-        <div class="user-infos-sub margin-top-10 status">
-          <div class="user-collation user-inline-stat">
-            <span class="coalition-span">Coalition</span>
-            <span class="coalition-span1"></span>
-          </div>
-          <div class="user-full-name user-inline-stat">
-            <span class="coalition-span">Full Name</span>
-            <span class="coalition-span1"></span>
-          </div>
-          <div class="user-login user-inline-stat">
-            <span class="coalition-span">Login</span>
-            <span class="coalition-span1"></span>
-          </div>
+      <div class="user-infos-sub margin-top-10 status">
+        <div class="user-collation user-inline-stat">
+          <span class="coalition-span">Coalition</span>
+          <span class="coalition-span1"></span>
+        </div>
+        <div class="user-full-name user-inline-stat">
+          <span class="coalition-span">Full Name</span>
+          <span class="coalition-span1"></span>
+        </div>
+        <div class="user-login user-inline-stat">
+          <span class="coalition-span">Login</span>
+          <span class="coalition-span1"></span>
         </div>
       </div>
+    </div>
     <div id="profile">
       <div class="user-infos-sub margin-top-10">
         <div class="user-wallet user-inline-stat">
@@ -203,13 +326,35 @@
     </div>
     <div class="user-data">
       <div class="user-header-box location">
-        <!-- Location -->
       </div>
     </div>
     <div id="footer">
+      <div class="logtime-infos-sub margin-top-10 status">
+        <div class="user-collation user-inline-stat">
+          <a id="weekly" class="coalition-span active-tab" href="#" style="text-decoration: none;">Weekly</a>
+        </div>
+        <div class="user-full-name user-inline-stat">
+          <a id="monthly" class="coalition-span tab" href="#" style="text-decoration: none;">Monthly</a>
+        </div>
+        <div class="user-login user-inline-stat" style="visibility: hidden;">
+          <a class="coalition-span" href="#" style="text-decoration: none;">Yearly</a>
+        </div>
+      </div>
       <div id="highchart_div">
         <div id="container-speed"></div>
       </div>
+      <div id="highchart_div2">
+        <div id="container-speed-month" class="container-speed-month location">
+          <div class="user-poste-status">
+            <span class="icon-circle text-success"></span>
+            This month's logtime is
+          </div>
+          <div id="month-logtime" class="user-poste-infos">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="level-bar">
     </div>
   </div>
   <script src="parse-logtime.js"></script>

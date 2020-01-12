@@ -1,6 +1,6 @@
 {
   "name": "42Assistant",
-  "version": "1.0",
+  "version": "1.2",
   "description": "A Google Chrome Extension that adds logtime counter to the intra for the new 42Cursus.",
   "permissions": ["https://*.intra.42.fr/", "activeTab", "cookies", "storage"],
   "browser_action": {

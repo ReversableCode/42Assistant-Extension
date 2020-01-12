@@ -28,6 +28,57 @@ var getHTML = function (url, callback) {
     xhr.send();
 };
 
+var monthly_logtime = "";
+
+function parseData(data) {
+    var months = {}
+    var i = 0
+    for (var date in data) {
+        const month = getMount(date)
+        if (months[month] == null) {
+            months[month] = { HH: 0, MM: 0 }
+        }
+        const tmp = parseHour(data[date])
+        months[month].HH += parseInt(tmp[0], 10)
+        months[month].MM += parseInt(tmp[1], 10)
+    }
+    convertMM(months)
+    var now = new Date().getMonth() + 1;
+    for (var key in months) {
+        if (key == now)
+            monthly_logtime = months[key].HH + "h" + months[key].MM + "m";
+    }
+    document.getElementById("month-logtime").innerHTML = monthly_logtime;
+}
+
+function getMount(date) {
+    const tmp = date.split('-')
+    return tmp[1]
+}
+
+function parseHour(day) {
+    const tmp = day.split(':')
+    if (tmp.length == 3) {
+        const HH = parseInt(tmp[0])
+        const MM = parseInt(tmp[1])
+        if (HH >= 0 && HH < 24 && MM >= 0 && MM < 60) {
+            return [HH, MM]
+        }
+    }
+    return [0, 0]
+}
+
+function convertMM(logtime) {
+    for (var key in logtime) {
+        if (logtime.hasOwnProperty(key)) {
+            const mm = logtime[key].MM % 60
+            const hh = (logtime[key].MM - mm) / 60
+            logtime[key].HH += hh
+            logtime[key].MM = (mm < 10 ? '0' : '') + mm
+        }
+    }
+}
+
 var user = "";
 var week = 7;
 var hour = 0;
@@ -69,6 +120,7 @@ getHTML('https://profile.intra.42.fr/', function (err, data) {
                 minute = minute + second / 60;
                 second = second % 60;
                 console.log(Math.ceil(hour) + 'h' + Math.ceil(minute));
+                parseData(data);
             }
         });
         document.getElementById("profile_img").style.backgroundImage = data.getElementsByClassName("user-profile-picture visible-sidebars")[0].style.backgroundImage;
@@ -89,6 +141,9 @@ getHTML('https://profile.intra.42.fr/', function (err, data) {
         udiv = data.getElementsByClassName("name margin-top-15 margin-bottom-10")[0].innerHTML;
         document.getElementsByClassName("coalition-span1")[1].innerHTML = udiv;
         document.getElementsByClassName("coalition-span1")[2].innerHTML = user;
+
+        var cdata = data.getElementsByClassName("progress double").length;
+        document.getElementById("level-bar").innerHTML = data.getElementsByClassName("progress double")[cdata - 1].innerHTML;
 
         document.getElementById("bg-frame").style.backgroundImage = data.getElementsByClassName("container-inner-item profile-item-top profile-banner home-banner flex flex-direction-row")[0].style.backgroundImage;
         var y = document.getElementsByClassName("coalition-span");
@@ -175,9 +230,10 @@ $(document).ready(function () {
     json.yAxis = yAxis;
     json.credits = credits;
     json.series = series;
+
     $('#container-speed').highcharts(json);
 
-    var chartFunction = function () {
+    chartFunction = function () {
         var chart = $('#container-speed').highcharts();
         var point;
         var newVal;
@@ -192,4 +248,26 @@ $(document).ready(function () {
         }
     };
     setInterval(chartFunction, 2000);
+});
+
+document.getElementById("weekly").addEventListener("click", function () {
+    var element = document.getElementById("weekly");
+    element.classList.remove("tab");
+    element.classList.add("active-tab");
+    element = document.getElementById("monthly");
+    element.classList.add("tab");
+    element.classList.remove("active-tab");
+    document.getElementById("highchart_div2").style.visibility = "hidden";
+    document.getElementById("highchart_div").style.visibility = "visible";
+});
+
+document.getElementById("monthly").addEventListener("click", function () {
+    var element = document.getElementById("monthly");
+    element.classList.remove("tab");
+    element.classList.add("active-tab");
+    element = document.getElementById("weekly");
+    element.classList.add("tab");
+    element.classList.remove("active-tab");
+    document.getElementById("highchart_div").style.visibility = "hidden";
+    document.getElementById("highchart_div2").style.visibility = "visible";
 });
