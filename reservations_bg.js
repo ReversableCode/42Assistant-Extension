@@ -6,9 +6,7 @@ chrome.webRequest.onCompleted.addListener(
 	function(info) {
 		chrome.tabs.sendMessage(info.tabId, {
 			url: info.url,
-			greeting: "reservations_update",
-			responseHeaders: info.responseHeaders,
-			info
+			greeting: "reservations_update"
 		});
 	},
 
@@ -19,5 +17,5 @@ chrome.webRequest.onCompleted.addListener(
 	},
 
 	// extraInfoSpec
-	["extraHeaders"]
+	[]
 );
