@@ -33,5 +33,8 @@
     "scripts": ["reservations_bg.js"],
     "persistent": true
   },
+  "externally_connectable": {
+    "matches": ["*://reservation.42network.org/", "*://reservation.42network.org/*"]
+  },
   "manifest_version": 2
 }
