@@ -4,7 +4,7 @@
   "description": "A Google Chrome Extension that adds logtime counter to the intra for the new 42Cursus.",
   "permissions": [
     "https://*.intra.42.fr/", "https://reservation.42network.org/",
-    "webRequest", "activeTab", "cookies", "storage"
+    "webRequest"
   ],
   "browser_action": {
     "default_popup": "popup.html",
