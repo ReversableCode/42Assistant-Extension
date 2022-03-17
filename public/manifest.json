@@ -1,6 +1,6 @@
 {
   "name": "42Assistant",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Google Chrome Extension that helps you visualize your intra 42 profile and logtime in a better and elegant UI and more!",
   "host_permissions": ["*://*.intra.42.fr/"],
   "action": {
