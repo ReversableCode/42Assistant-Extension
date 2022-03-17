@@ -21,7 +21,7 @@ export default function OtherProfilePage({
 
   return (
     <main className="w-full h-full flex flex-col">
-      <div className="bg-white dark:bg-primary pb-4 shadow-xl max-w-sm relative">
+      <div className="bg-primary pb-4 shadow-xl max-w-sm relative">
         <div className="w-full h-24 relative">
           <button
             onClick={() => switchView("PROFILE")}
