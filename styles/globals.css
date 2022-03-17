@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: futura;
+  src: url(/fonts/ParaType-FuturaPTBook.otf);
+}
+
+* {
+  font-family: 'futura', 'Noto Sans', 'Arial', 'Helvetica', 'Sans serif';
+}
+
+@font-face {
+  font-family: "streamline-30px";
+  src: url(/fonts/streamline-30px.woff) format("woff");
+  font-weight: normal;
+  font-style: normal
+}
+
+[class^="icon-"]:before,[class*=" icon-"]:before {
+  font-family: "streamline-30px" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+.icon-sad:before {
+  content: "\e0e7";
+  color: #EE6173 !important;
+}
+
+.icon-smiley-surprise:before {
+  content: "\e0e8";
+  color: #DF9539 !important;
+}
+
+.icon-smiley-relax:before {
+  content: "\e0e5";
+  color: #53D27A !important;
+}
+
+.coalition-flag-mini {
+  position: relative;
+  display: flex;
+  width: 40px;
+  height: 60px;
+}
+
+.coalition-flag--flag {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 40px;
+}
+
+.coalition-flag--icon {
+  width: 32px;
+  height: auto;
+  position: absolute;
+  top: 16px;
+  left: 4px;
+  z-index: 2;
+  fill: #fff;
+}
+
+#tooltip:after {
+  bottom: -4px;
+  left: 50%;
+  content: " ";
+  height: 7px;
+  width: 7px;
+  position: absolute;
+  pointer-events: none;
+  background-color: #0f0719;
+  border: 1px solid transparent;
+  border-color: var(--coalition-color-primary);
+  margin-left: -3px;
+  transform: rotate(45deg);
+  z-index: 0;
+}
+
+.search-item.search-user-item {
+  width: 100%;
+  min-height: 150px;
+  background: #eee;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  background-position: 50% 50%;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 0%;
+  border: 1px solid #eee;
+  -webkit-transition: box-shadow, 0.3s;
+  -o-transition: box-shadow, 0.3s;
+  transition: box-shadow, 0.3s;
+}
+
+.search-item.search-user-item .search-item-thumb {
+  text-align: center;
+  max-width: auto;
+  width: 100%;
+  display: flex;
+  box-align: center;
+  align-items: center;
+  box-orient: vertical;
+  box-direction: normal;
+  flex-direction: column;
+  box-pack: center;
+  justify-content: center;
+}
+
+.search-item.search-user-item .search-item-main {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: #fff;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
+.search-item-title {
+  margin: 5px 0;
+  color: #0f0719;
+  font-size: 12px;
+}

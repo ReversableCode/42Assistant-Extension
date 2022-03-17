@@ -1,0 +1,49 @@
+{
+  "name": "42assistant-next",
+  "version": "2.0.0",
+  "description": "An unofficial extention for the 42 Network intra, developed by Abdessamad El Bahri",
+  "author": {
+    "name": "Abdessamad El Bahri",
+    "email": "reversablecode@outlook.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ReversableCode/42Assistant-Extension"
+  },
+  "keywords": [
+    "42",
+    "42assistant",
+    "next",
+    "extension",
+    "unofficial"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build",
+    "build:extension": "next build && next export -o extension-dist",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^1.0.6",
+    "classnames": "^2.3.1",
+    "color": "^4.2.1",
+    "highcharts": "^10.0.0",
+    "highcharts-react-official": "^3.1.0",
+    "moment": "^2.29.1",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.3",
+    "@types/node": "17.0.21",
+    "@types/react": "17.0.40",
+    "autoprefixer": "^10.4.2",
+    "eslint": "8.11.0",
+    "eslint-config-next": "12.1.0",
+    "postcss": "^8.4.8",
+    "tailwindcss": "^3.0.23",
+    "typescript": "4.6.2"
+  }
+}
